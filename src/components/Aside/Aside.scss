@@ -1,0 +1,39 @@
+@import "../../scss/variables";
+.aside {
+  width: 280px;
+  &__container {
+    position: sticky;
+    top: 95px;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &-block {
+      background: $bg;
+      border-radius: 15px;
+      box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &-img {
+      width: 35px;
+      height: 35px;
+    }
+    &-text {
+      max-width: 115px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.recipesPage {
+  &__container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__recipesList {
+    width: 880px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}

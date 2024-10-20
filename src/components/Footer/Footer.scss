@@ -1,0 +1,52 @@
+@import "../../scss/variables";
+
+.footer {
+  margin-top: auto;
+  background: $bg;
+  padding: 20px 0;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+  &__container {
+    display: flex;
+    align-items: center;
+    max-width: 1180px;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+  &__title {
+    font-size: 32px;
+    color: $main-color;
+    font-weight: bold;
+  }
+  &__contactsList {
+    &-item {
+      margin-top: 5px;
+      &-title {
+        color: $main-color;
+      }
+    }
+  }
+  &__socialList {
+    &-item {
+      margin-top: 5px;
+      &-title {
+        color: $main-color;
+      }
+      &-img {
+        cursor: pointer;
+      }
+      &-social {
+        margin-top: 5px;
+        display: flex;
+        gap: 10px;
+      }
+    }
+  }
+  &__navList {
+    &-item {
+      margin-top: 5px;
+      &-title {
+        color: $main-color;
+      }
+    }
+  }
+}
