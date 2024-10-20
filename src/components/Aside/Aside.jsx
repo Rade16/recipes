@@ -25,7 +25,7 @@ const Aside = () => {
               <p className="aside__item-text">Калькулятор калорий</p>
             </li>
           </Link>
-          <Link to="/calculator" className="aside__item-link">
+          <Link to="/favorites" className="aside__item-link">
             <li className="aside__item">
               <div className="aside__item-block">
                 <img src={Calculator} alt="" className="aside__item-img" />
@@ -33,7 +33,7 @@ const Aside = () => {
               <p className="aside__item-text">Избранное</p>
             </li>
           </Link>
-          <Link to="/calculator" className="aside__item-link">
+          <Link to="/yourRecipes" className="aside__item-link">
             <li className="aside__item">
               <div className="aside__item-block">
                 <img src={Calculator} alt="" className="aside__item-img" />

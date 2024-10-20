@@ -11,6 +11,9 @@ import Layout from "./components/Layout/Layout.jsx";
 import RecipesPage from "./screens/RecipesPage/RecipesPage.jsx";
 import CalorieCalculator from "./screens/CalorieCalculator/CalorieCalculator.jsx";
 import RecipePage from "./screens/RecipePage/RecipePage.jsx";
+import Favorites from "./screens/Favorites/Favorites.jsx";
+import YourRecipes from "./screens/YourRecipes/YourRecipes.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: "/calculator",
         element: <CalorieCalculator />,
+      },
+      {
+        path: "/favorites",
+        element: <Favorites />,
+      },
+      {
+        path: "/yourRecipes",
+        element: <YourRecipes />,
       },
     ],
   },

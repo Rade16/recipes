@@ -16,6 +16,11 @@ const RecipesPage = () => {
             <RecipePreview />
             <RecipePreview />
             <RecipePreview />
+            <RecipePreview />
+            <RecipePreview />
+            <RecipePreview />
+            <RecipePreview />
+            <RecipePreview />
           </div>
         </div>
       </div>
