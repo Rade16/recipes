@@ -3,6 +3,8 @@ import "./Aside.scss";
 import Recipe from "../../assets/Aside/recipe.svg";
 import Calculator from "../../assets/Aside/calculator.svg";
 import { NavLink, Link } from "react-router-dom";
+import Favorites from "../../assets/Aside/favorites.svg";
+import Yours from "../../assets/Aside/yours.svg";
 
 const Aside = () => {
   return (
@@ -28,7 +30,7 @@ const Aside = () => {
           <Link to="/favorites" className="aside__item-link">
             <li className="aside__item">
               <div className="aside__item-block">
-                <img src={Calculator} alt="" className="aside__item-img" />
+                <img src={Favorites} alt="" className="aside__item-img" />
               </div>
               <p className="aside__item-text">Избранное</p>
             </li>
@@ -36,7 +38,7 @@ const Aside = () => {
           <Link to="/yourRecipes" className="aside__item-link">
             <li className="aside__item">
               <div className="aside__item-block">
-                <img src={Calculator} alt="" className="aside__item-img" />
+                <img src={Yours} alt="" className="aside__item-img" />
               </div>
               <p className="aside__item-text">Ваши рецепты</p>
             </li>
