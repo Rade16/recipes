@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       {
         index: true,
         loader: () => redirect("/recipes"),
-      },
+      },  
       {
         path: "/recipes",
         element: <RecipesPage />,
