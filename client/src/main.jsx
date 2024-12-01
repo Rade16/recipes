@@ -16,7 +16,38 @@ import YourRecipes from "./screens/YourRecipes/YourRecipes.jsx";
 import Register from "./screens/Register/Register.jsx";
 import Login from "./screens/Login/Login.jsx";
 
+import { useAuth } from "./context/AuthContext";
+import axios from "axios";
+import { useEffect } from "react";
+import { AuthProvider } from "./context/AuthContext";
+
 const user = localStorage.getItem("token");
+
+const App = () => {
+  const { setUser } = useAuth();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const response = await axios.get("http://localhost:5000/auth/auth", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        console.log(response.data.user);
+        setUser(response.data.user); // Устанавливаем пользователя в контексте
+      } catch (error) {
+        console.error("Ошибка аутентификации:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [setUser]);
+
+  return <RouterProvider router={router} />;
+};
 
 const router = createBrowserRouter([
   {
@@ -61,7 +92,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <AuthProvider>
+    <App />
+  </AuthProvider>
+  // </React.StrictMode>
 );

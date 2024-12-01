@@ -2,9 +2,18 @@ import React from "react";
 import "./Header.scss";
 import Search from "../../assets/Navigation/Search.svg";
 import Login from "../../assets/Navigation/Login.svg";
-
 import { Link } from "react-router-dom";
+
+import { useAuth } from "../../context/AuthContext";
 const Header = () => {
+  const { user, setUser } = useAuth();
+
+  const handleLogout = () => {
+    setUser(null); // Удаляем данные пользователя
+    localStorage.removeItem("token"); // Удаляем токен
+    alert("Вы вышли из аккаунта");
+  };
+
   return (
     <header className="header">
       <div className="header__container">
@@ -21,12 +30,19 @@ const Header = () => {
             <img src={Search} alt="" />
           </button>
         </div>
-        <Link to="/login" className="header__profile">
-          <div className="header__profile">
-            <img src={Login} alt="" />
-            <p className="header__profile-text">Войти</p>
+        {user ? (
+          <div>
+            <span>Привет, {user.username}!</span>
+            <button onClick={handleLogout}>Выйти</button>
           </div>
-        </Link>
+        ) : (
+          <Link to="/login" className="header__profile">
+            <div className="header__profile">
+              <img src={Login} alt="" />
+              <p className="header__profile-text">Войти</p>
+            </div>
+          </Link>
+        )}
       </div>
     </header>
   );

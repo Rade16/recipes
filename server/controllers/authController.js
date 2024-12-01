@@ -1,4 +1,5 @@
 const { User } = require("../models/User");
+const { Recipe } = require("../models/Recipe");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
@@ -59,14 +60,14 @@ class authController {
   async login(req, res) {
     console.log("Полученные данные для входа:", req.body);
     try {
-      const { username, password } = req.body;
+      const { email, password } = req.body;
 
       // Проверка наличия пользователя
-      const user = await User.findOne({ where: { username } });
+      const user = await User.findOne({ where: { email } });
       if (!user) {
         return res
           .status(400)
-          .json({ message: `Пользователь ${username} не найден` });
+          .json({ message: `Пользователь ${email} не найден` });
       }
 
       // Проверка пароля
@@ -81,6 +82,43 @@ class authController {
     } catch (e) {
       console.log(e);
       return res.status(400).json({ message: "Ошибка при входе" });
+    }
+  }
+
+  async auth(req, res) {
+    try {
+      console.log("Проверка authMiddleware:", req.user);
+      // Получаем пользователя
+      const user = await User.findOne({ where: { id: req.user.id } });
+      if (!user) {
+        return res.status(404).json({ message: "Пользователь не найден" });
+      }
+
+      // Получаем рецепты, созданные пользователем
+      // // const recipes = await Recipe.findAll({ where: { userId: user.id } });
+      // console.log("Найденные рецепты:", recipes);
+      // Получаем избранные рецепты
+      // const favoriteRecipes = await Favorite.findAll({
+      //   where: { userId: user.id },
+      // });
+
+      // Генерируем новый токен для пользователя
+      const token = generateAccessToken(user.id);
+
+      // Формируем ответ с данными пользователя, его рецептами и избранными рецептами
+      return res.json({
+        token,
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email, // Добавляем email
+          // recipes, // Рецепты, созданные пользователем
+          // favorites: favoriteRecipes, // Избранные рецепты
+        },
+      });
+    } catch (e) {
+      console.log(e);
+      res.status(500).send({ message: "Server error" });
     }
   }
 
