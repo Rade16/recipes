@@ -5,6 +5,7 @@ import Login from "../../assets/Navigation/Login.svg";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../../context/AuthContext";
+import logout from "../../assets/Navigation/logout.svg";
 const Header = () => {
   const { user, setUser } = useAuth();
 
@@ -31,13 +32,15 @@ const Header = () => {
           </button>
         </div>
         {user ? (
-          <div>
+          <div className="header__profile">
             <span>Привет, {user.username}!</span>
-            <button onClick={handleLogout}>Выйти</button>
+            <button onClick={handleLogout} className="header__profile-button">
+              <img src={logout} alt="" className="header__profile-button-img" />
+            </button>
           </div>
         ) : (
-          <Link to="/login" className="header__profile">
-            <div className="header__profile">
+          <Link to="/login" className="header__button">
+            <div className="header__button">
               <img src={Login} alt="" />
               <p className="header__profile-text">Войти</p>
             </div>

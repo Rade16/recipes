@@ -53,7 +53,7 @@
       }
     }
   }
-  &__profile {
+  &__button {
     margin-left: auto;
     cursor: pointer;
     display: flex;
@@ -73,6 +73,22 @@
     &:hover {
       background: #fff9e3;
       border: 1px solid $main-color;
+    }
+  }
+  &__profile {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    &-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      &-img {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 }

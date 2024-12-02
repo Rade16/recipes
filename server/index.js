@@ -3,7 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const sequelize = require("./db");
-const authRouter = require("./routes/authRouter");
+const router = require("./routes/index");
+const { User, Recipe, Favorite } = require("./models/index");
 
 const PORT = process.env.PORT || 5000;
 
@@ -21,7 +22,7 @@ app.use(express.json());
 app.options("*", cors()); // Обработка всех предзапросов
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/auth", authRouter);
+app.use("/api", router);
 const start = async () => {
   try {
     await sequelize.authenticate();

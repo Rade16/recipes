@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Register.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
@@ -12,13 +12,14 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:5000/auth/registration`,
+        `http://localhost:5000/api/auth/registration`,
         {
           username,
           password,
           email,
         }
       );
+
       console.log(response.data);
     } catch (error) {
       console.error(error);

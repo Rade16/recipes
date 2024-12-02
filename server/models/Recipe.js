@@ -20,6 +20,10 @@ const Recipe = sequelize.define("recipe", {
   },
   image: {
     type: DataTypes.STRING,
+    allowNull: true,
+  },
+  time: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
 });

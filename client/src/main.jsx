@@ -20,6 +20,7 @@ import { useAuth } from "./context/AuthContext";
 import axios from "axios";
 import { useEffect } from "react";
 import { AuthProvider } from "./context/AuthContext";
+import AddRecipe from "./screens/AddRecipe/AddRecipe.jsx";
 
 const user = localStorage.getItem("token");
 
@@ -32,9 +33,12 @@ const App = () => {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const response = await axios.get("http://localhost:5000/auth/auth", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(
+          "http://localhost:5000/api/auth/auth",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
 
         console.log(response.data.user);
         setUser(response.data.user); // Устанавливаем пользователя в контексте
@@ -86,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: "/yourRecipes",
         element: <YourRecipes />,
+      },
+      {
+        path: "/addRecipe",
+        element: <AddRecipe />,
       },
     ],
   },

@@ -5,7 +5,7 @@
   background: $bg;
   border-radius: 30px;
   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+
   &__image {
     width: 280px;
     height: 235px;
@@ -13,9 +13,17 @@
     border-radius: 30px 30px 0 0;
   }
 
+  &__link {
+    cursor: pointer;
+  }
+
   &__info {
     padding: 10px 15px;
-
+    &-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     &-tags {
       display: flex;
       gap: 5px;
@@ -40,6 +48,9 @@
       font-size: 16px;
       margin-top: 5px;
       color: $color;
+    }
+    &-favorite {
+      cursor: pointer;
     }
   }
 }
