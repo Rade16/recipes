@@ -12,14 +12,14 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // URL вашего фронтенда
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Разрешенные методы
-    allowedHeaders: ["Content-Type", "Authorization"], // Разрешенные заголовки
+    origin: "http://localhost:5173", 
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], 
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.use(express.json());
 
-app.options("*", cors()); // Обработка всех предзапросов
+app.options("*", cors()); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api", router);

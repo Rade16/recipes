@@ -24,7 +24,7 @@ import AddRecipe from "./screens/AddRecipe/AddRecipe.jsx";
 const user = localStorage.getItem("token");
 
 const App = () => {
-  const { setUser } = useAuth();
+  const { user, setUser } = useAuth();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -40,7 +40,7 @@ const App = () => {
         );
 
         console.log(response.data.user);
-        setUser(response.data.user); // Устанавливаем пользователя в контексте
+        setUser(response.data.user); 
       } catch (error) {
         console.error("Ошибка аутентификации:", error);
       }

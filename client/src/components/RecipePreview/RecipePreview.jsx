@@ -28,10 +28,7 @@ const RecipePreview = (obj) => {
         <img src={Food} alt="" className="recipePreview__image" />
       </Link>
       <div className="recipePreview__info">
-        <div className="recipePreview__info-tags">
-          <div className="recipePreview__info-tag">Драники</div>
-          <div className="recipePreview__info-tag">Печь</div>
-        </div>
+      
         <div className="recipePreview__info-line">
           <h1 className="recipePreview__info-title">{obj.title}</h1>
           <img

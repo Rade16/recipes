@@ -2,42 +2,39 @@ import React, { useState } from "react";
 import "./Login.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext"; 
 
-import { useAuth } from "../../context/AuthContext"; // Путь может быть другим
-import { login } from "../../services/auth.js"; // Путь может быть другим
-
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-
   const { setUser } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   const response = await axios.post(`http://localhost:5000/auth/login`, {
-    //     username,
-    //     password,
-    //   });
-
-    //   localStorage.setItem("token", response.data.token);
-
-    //   console.log("Успешный вход:", response.data);
-    //   console.log(response.data.token);
-    // } catch (error) {
-    //   console.error("Ошибка входа:", error.response?.data || error.message);
-    //   console.error(error);
-    // }
+    setError("");
 
     try {
-      const data = await login(email, password); // Входим в систему
+      const response = await axios.post("http://localhost:5000/api/auth/login", {
+        email,
+        password,
+      });
 
-      setUser(data.user); // Сохраняем данные пользователя в контексте
-      alert("Успешный вход!");
+      const token = response.data.token; 
+      localStorage.setItem("token", token); 
+      const userResponse = await axios.get("http://localhost:5000/api/auth/auth", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setUser(userResponse.data.user); 
+      navigate("/"); 
     } catch (e) {
-      alert("Ошибка входа");
+      setError("Ошибка входа: неверный email или пароль");
     }
   };
   return (
@@ -53,7 +50,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            type="text"
+            type="password"
             placeholder="Пароль"
             className="login__form-input"
             value={password}

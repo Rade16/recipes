@@ -10,8 +10,8 @@ const Header = () => {
   const { user, setUser } = useAuth();
 
   const handleLogout = () => {
-    setUser(null); // Удаляем данные пользователя
-    localStorage.removeItem("token"); // Удаляем токен
+    setUser(null); 
+    localStorage.removeItem("token"); 
     alert("Вы вышли из аккаунта");
   };
 
