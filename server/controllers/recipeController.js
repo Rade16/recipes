@@ -105,6 +105,16 @@ class RecipeController {
       return res.status(500).json({ message: "Ошибка сервера" });
     }
   }
+
+  async getRecipeById(req, res) {
+    try {
+  
+      const recipe = await Recipe.findOne({ where: { id: req.params.id } });
+      return res.json(recipe);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 module.exports = new RecipeController();

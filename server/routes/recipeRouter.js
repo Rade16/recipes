@@ -16,4 +16,6 @@ router.get("/favorites/:userId", authMiddleware, controller.getFavoriteRecipes);
 
 router.get("/my-recipes/:userId", authMiddleware, controller.getMyRecipes);
 
+router.get ("/recipe/:id", controller.getRecipeById);
+
 module.exports = router;
