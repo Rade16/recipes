@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./RecipePage.scss";
+import { useParams } from "react-router-dom";
 import Aside from "../../components/Aside/Aside";
-
+import axios from "axios";
 import img from "../../assets/Recipe/food.jpg";
-const RecipePage = () => {
+const RecipePage = (obj) => {
+  const {id} = useParams();
+  const [recipe, setRecipe] = useState({});
+
+  useEffect(() => {
+    const fetchRecipe = async () => {
+
+      console.log(obj.id);
+      console.log(obj);
+      console.log(id);
+
+      const response = await axios.get(
+        `http://localhost:5000/api/recipes/recipe/${id}`
+      );
+      console.log(response.data);
+      setRecipe(response.data);
+    };    
+    fetchRecipe();
+  }, []); 
+
+
   return (
     <div className="recipePage">
       <div className="recipePage__container">
@@ -11,20 +32,18 @@ const RecipePage = () => {
         <div className="recipePage__recipe">
           <img src={img} alt="" className="recipePage__recipe-img" />
           <div className="recipePage__recipe-container">
-            <h1 className="recipePage__recipe-title">Морковные драники</h1>
+            <h1 className="recipePage__recipe-title">{recipe.title}</h1>
             <p className="recipePage__recipe-description">
-              Морковные драники отлично подходят для завтрака или полдника.
-              Подавайте их со сметаной или приготовьте простой крем, взбив
-              сметану с сахаром. Наличие сыра в тесте придаст им нежный
-              сливочный вкус и аромат. Дополните тесто сухофруктами, орехами и
-              различными ароматными специями. Сначала пожарьте драники на
-              сковороде, а потом доведите до готовности в духовке.
+              {recipe.description}
             </p>
             <div className="recipePage__recipe-ingredients">
               <h2 className="recipePage__recipe-ingredients-title">
                 Ингредиенты
               </h2>
-              <ul className="recipePage__recipe-ingredients-list">
+              <p>
+                {recipe.ingredients}
+              </p>
+              {/* <ul className="recipePage__recipe-ingredients-list">
                 <li className="recipePage__recipe-ingredients-item">
                   <p className="recipePage__recipe-ingredients-item-food">
                     Морковь
@@ -35,13 +54,16 @@ const RecipePage = () => {
                 </li>
                 <li className="recipePage__recipe-ingredients-item">Соль</li>
                 <li className="recipePage__recipe-ingredients-item">Молоко</li>
-              </ul>
+              </ul> */}
             </div>
             <div className="recipePage__recipe-instructions">
               <h2 className="recipePage__recipe-instructions-title">
                 ПОШАГОВЫЙ РЕЦЕПТ
               </h2>
-              <ul className="recipePage__recipe-instructions-list">
+
+                <p>{recipe.instructions}</p>
+
+              {/* <ul className="recipePage__recipe-instructions-list">
                 <li className="recipePage__recipe-instructions-item">
                   <div className="recipePage__recipe-instructions-item-step">
                     Шаг 1
@@ -96,7 +118,7 @@ const RecipePage = () => {
                     готовности в духовке.
                   </p>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>

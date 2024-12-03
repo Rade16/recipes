@@ -4,7 +4,6 @@ import "./scss/main.scss";
 import {
   createBrowserRouter,
   RouterProvider,
-  Navigate,
   redirect,
 } from "react-router-dom";
 import Layout from "./components/Layout/Layout.jsx";

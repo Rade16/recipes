@@ -24,7 +24,7 @@ const RecipePreview = (obj) => {
   };
   return (
     <div className="recipePreview" id={obj.id}>
-      <Link to="/recipes/1" className="recipePreview__link">
+      <Link to={`/recipes/${obj.id}`} className="recipePreview__link">
         <img src={Food} alt="" className="recipePreview__image" />
       </Link>
       <div className="recipePreview__info">
