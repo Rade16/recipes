@@ -24,15 +24,7 @@ const RecipesPage = () => {
         <div className="recipesPage__container">
           <Aside />
           <div className="recipesPage__recipesList">
-            {/* <RecipePreview />
-            <RecipePreview />
-            <RecipePreview />
-            <RecipePreview />
-            <RecipePreview />
-            <RecipePreview />
-            <RecipePreview />
-            <RecipePreview />
-            <RecipePreview /> */}
+        
             {recipes.map((recipe) => (
               <RecipePreview
                 id={recipe.id}
