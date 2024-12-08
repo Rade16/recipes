@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-
+import axios from "axios";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -15,14 +15,14 @@ export const AuthProvider = ({ children }) => {
           },
         })
         .then((response) => {
-          setUser(response.data.user); 
+          setUser(response.data.user);
         })
         .catch((error) => {
           console.error("Ошибка получения данных пользователя:", error);
-          setUser(null); 
+          setUser(null);
         });
     }
-  }, []); 
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
