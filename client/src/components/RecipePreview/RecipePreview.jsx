@@ -25,10 +25,13 @@ const RecipePreview = (obj) => {
   return (
     <div className="recipePreview" id={obj.id}>
       <Link to={`/recipes/${obj.id}`} className="recipePreview__link">
-        <img src={Food} alt="" className="recipePreview__image" />
+        <img
+          src={`http://localhost:5000${obj.image}`}
+          alt=""
+          className="recipePreview__image"
+        />
       </Link>
       <div className="recipePreview__info">
-      
         <div className="recipePreview__info-line">
           <h1 className="recipePreview__info-title">{obj.title}</h1>
           <img

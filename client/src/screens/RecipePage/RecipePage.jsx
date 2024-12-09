@@ -5,12 +5,11 @@ import Aside from "../../components/Aside/Aside";
 import axios from "axios";
 import img from "../../assets/Recipe/food.jpg";
 const RecipePage = (obj) => {
-  const {id} = useParams();
+  const { id } = useParams();
   const [recipe, setRecipe] = useState({});
 
   useEffect(() => {
     const fetchRecipe = async () => {
-
       console.log(obj.id);
       console.log(obj);
       console.log(id);
@@ -20,17 +19,20 @@ const RecipePage = (obj) => {
       );
       console.log(response.data);
       setRecipe(response.data);
-    };    
+    };
     fetchRecipe();
-  }, []); 
-
+  }, []);
 
   return (
     <div className="recipePage">
       <div className="recipePage__container">
         <Aside />
         <div className="recipePage__recipe">
-          <img src={img} alt="" className="recipePage__recipe-img" />
+          <img
+            src={`http://localhost:5000${recipe.image}`}
+            alt=""
+            className="recipePage__recipe-img"
+          />
           <div className="recipePage__recipe-container">
             <h1 className="recipePage__recipe-title">{recipe.title}</h1>
             <p className="recipePage__recipe-description">
@@ -40,9 +42,7 @@ const RecipePage = (obj) => {
               <h2 className="recipePage__recipe-ingredients-title">
                 Ингредиенты
               </h2>
-              <p>
-                {recipe.ingredients}
-              </p>
+              <p>{recipe.ingredients}</p>
               {/* <ul className="recipePage__recipe-ingredients-list">
                 <li className="recipePage__recipe-ingredients-item">
                   <p className="recipePage__recipe-ingredients-item-food">
@@ -61,7 +61,7 @@ const RecipePage = (obj) => {
                 ПОШАГОВЫЙ РЕЦЕПТ
               </h2>
 
-                <p>{recipe.instructions}</p>
+              <p>{recipe.instructions}</p>
 
               {/* <ul className="recipePage__recipe-instructions-list">
                 <li className="recipePage__recipe-instructions-item">

@@ -11,11 +11,11 @@ const Recipe = sequelize.define("recipe", {
     allowNull: false,
   },
   ingredients: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   instructions: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   image: {

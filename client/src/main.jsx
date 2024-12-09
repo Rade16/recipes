@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./scss/main.scss";
 import {
@@ -14,12 +14,11 @@ import Favorites from "./screens/Favorites/Favorites.jsx";
 import YourRecipes from "./screens/YourRecipes/YourRecipes.jsx";
 import Register from "./screens/Register/Register.jsx";
 import Login from "./screens/Login/Login.jsx";
+import AddRecipe from "./screens/AddRecipe/AddRecipe.jsx";
 
 import { useAuth } from "./context/AuthContext";
 import axios from "axios";
-import { useEffect } from "react";
 import { AuthProvider } from "./context/AuthContext";
-import AddRecipe from "./screens/AddRecipe/AddRecipe.jsx";
 
 const user = localStorage.getItem("token");
 
@@ -40,7 +39,7 @@ const App = () => {
         );
 
         console.log(response.data.user);
-        setUser(response.data.user); 
+        setUser(response.data.user);
       } catch (error) {
         console.error("Ошибка аутентификации:", error);
       }

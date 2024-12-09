@@ -1,10 +1,27 @@
 const { User, Recipe, Favorite } = require("./../models/index");
 
 class RecipeController {
+  async searchRecipes(req, res) {
+    try {
+      const { query } = req.query;
+      const recipes = await Recipe.findAll({
+        where: {
+          title: {
+            [Op.iLike]: `%${query}%`,
+          },
+        },
+      });
+      return res.json(recipes);
+    } catch (error) {
+      console.error("Ошибка при поиске рецептов:", error);
+      return res.status(500).json({ message: "Ошибка сервера" });
+    }
+  }
+
   async create(req, res) {
     try {
-      const { title, description, ingredients, instructions, image, time } =
-        req.body;
+      const { title, description, ingredients, instructions, time } = req.body;
+      const image = req.file ? `/uploads/${req.file.filename}` : null;
       const recipe = await Recipe.create({
         user_id: req.user.id,
         title,
@@ -24,7 +41,6 @@ class RecipeController {
     try {
       const { userId, recipeId } = req.body;
 
-     
       const user = await User.findOne({ where: { id: userId } });
       const recipe = await Recipe.findOne({ where: { id: recipeId } });
 
@@ -34,7 +50,6 @@ class RecipeController {
           .json({ message: "Пользователь или рецепт не найден" });
       }
 
-    
       const existingFavorite = await Favorite.findOne({
         where: { user_id: userId, recipe_id: recipeId },
       });
@@ -86,12 +101,11 @@ class RecipeController {
     try {
       const { userId } = req.params;
 
-      
       const user = await User.findOne({
         where: { id: userId },
         include: {
           model: Recipe,
-          through: { attributes: [] }, 
+          through: { attributes: [] },
         },
       });
 
@@ -99,7 +113,7 @@ class RecipeController {
         return res.status(404).json({ message: "Пользователь не найден" });
       }
 
-      return res.json(user.recipes); 
+      return res.json(user.recipes);
     } catch (error) {
       console.error("Ошибка при получении избранных рецептов:", error);
       return res.status(500).json({ message: "Ошибка сервера" });
@@ -108,7 +122,6 @@ class RecipeController {
 
   async getRecipeById(req, res) {
     try {
-  
       const recipe = await Recipe.findOne({ where: { id: req.params.id } });
       return res.json(recipe);
     } catch (e) {

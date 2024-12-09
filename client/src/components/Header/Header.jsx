@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.scss";
 import Search from "../../assets/Navigation/Search.svg";
 import Login from "../../assets/Navigation/Login.svg";
 import { Link } from "react-router-dom";
-
 import { useAuth } from "../../context/AuthContext";
 import logout from "../../assets/Navigation/logout.svg";
-const Header = () => {
+
+const Header = ({ onSearch }) => {
   const { user, setUser } = useAuth();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleLogout = () => {
-    setUser(null); 
-    localStorage.removeItem("token"); 
+    setUser(null);
+    localStorage.removeItem("token");
     alert("Вы вышли из аккаунта");
+  };
+
+  const handleInputChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    onSearch(query);
   };
 
   return (
@@ -26,6 +33,8 @@ const Header = () => {
             type="text"
             className="header__search-input"
             placeholder="Поиск самых вкусных рецептов :)"
+            value={searchQuery}
+            onChange={handleInputChange}
           />
           <button className="header__search-button">
             <img src={Search} alt="" />
