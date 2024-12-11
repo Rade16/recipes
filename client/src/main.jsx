@@ -23,11 +23,7 @@ import { AuthProvider } from "./context/AuthContext";
 const user = localStorage.getItem("token");
 
 const App = () => {
-  const { user, setUser } = useAuth();
 
-  if (!user) {
-    return <div>Загрузка...</div>;
-  }
   useEffect(() => {
     const fetchUserData = async () => {
       try {

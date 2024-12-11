@@ -7,6 +7,10 @@ import img from "../../assets/img.svg";
 
 const AddRecipe = () => {
   const { user } = useAuth();
+  if (!user) {
+    return <div>Загрузка...</div>;
+  }
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState("");
