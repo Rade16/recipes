@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,10 +20,17 @@ const Register = () => {
           email,
         }
       );
-      navigate("/login")
+      navigate("/login");
       console.log(response.data);
     } catch (error) {
-      console.error(error);
+      if (error.response && error.response.data) {
+        const { errors } = error.response.data;
+        if (Array.isArray(errors)) {
+          alert(errors.join("\n"));
+        } else {
+          alert(error.response.data.message);
+        }
+      }
     }
   };
   return (

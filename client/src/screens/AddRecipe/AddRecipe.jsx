@@ -27,12 +27,8 @@ const AddRecipe = () => {
   formData.append("instructions", instructions);
   formData.append("time", time);
   if (image) {
-    formData.append("image", image); // Добавляем файл
+    formData.append("image", image);
   }
-  // if (!token) {
-  //   alert("Вы не авторизованы");
-  //   return;
-  // }
 
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
