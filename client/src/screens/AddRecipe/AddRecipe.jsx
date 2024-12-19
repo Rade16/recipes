@@ -17,6 +17,7 @@ const AddRecipe = () => {
   const [instructions, setInstructions] = useState("");
   const [image, setImage] = useState(null);
   const [time, setTime] = useState("");
+  const [previewRecipeImage, setPreviewRecipeImage] = useState(null);
 
   const token = localStorage.getItem("token");
 
@@ -32,6 +33,8 @@ const AddRecipe = () => {
 
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
+    const file = e.target.files[0];
+    setPreviewRecipeImage(URL.createObjectURL(file));
   };
 
   const handleSubmit = async (e) => {
@@ -66,7 +69,11 @@ const AddRecipe = () => {
             onSubmit={handleSubmit}
           >
             <label htmlFor="file" className="addRecipe__add-form-pick">
-              <img src={img} alt="" className="addRecipe__add-form-pick-img" />
+              <img
+                src={previewRecipeImage}
+                alt=""
+                className="addRecipe__add-form-pick-img"
+              />
               <input
                 id="file"
                 type="file"

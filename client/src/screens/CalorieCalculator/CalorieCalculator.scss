@@ -212,4 +212,40 @@
       margin: 0 auto;
     }
   }
+  &__result {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    border: 1px solid #e3e3e3;
+    &-title {
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 20px;
+    }
+    &-text {
+      font-size: 20px;
+      line-height: 150%;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding-left: 40px;
+      &-ccal {
+        gap: 5px;
+        font-size: 32px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+      }
+    }
+    &-img {
+      width: 25px;
+      height: 25px;
+      &-ccal {
+        width: 30px;
+        height: 40px;
+      }
+    }
+  }
 }

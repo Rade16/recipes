@@ -23,7 +23,7 @@ import { AuthProvider } from "./context/AuthContext";
 const user = localStorage.getItem("token");
 
 const App = () => {
-
+  const { user, setUser } = useAuth();
   useEffect(() => {
     const fetchUserData = async () => {
       try {
